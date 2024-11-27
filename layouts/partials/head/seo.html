@@ -26,7 +26,7 @@
         {{- with .Site.LanguageCode -}}
             "inLanguage": "{{ . }}",
         {{- end -}}
-        {{- with .Site.Author.name -}}
+        {{- with .Site.Params.author.name -}}
             "author": {
                 "@type": "Person",
                 "name": {{ . | safeHTML }}
@@ -122,11 +122,11 @@
         {{- with .Site.Copyright -}}
             "license": {{ . | safeHTML }},
         {{- end -}}
-        {{- $publisher := .Params.author | default .Site.Author.name | default (T "author") | dict "name" -}}
+        {{- $publisher := .Site.Params.author | default .Site.Params.author.name | default (T "author") | dict "name" -}}
         {{- $publisher = $params.seo.publisher | default dict | merge $publisher -}}
         "publisher": {
             "@type": "Organization",
-            "name": {{ $publisher.name | safeHTML }}
+            "name": {{ $publisher.name }}
             {{- $logo := $publisher.logoUrl -}}
             {{- with dict "Path" $logo "Resources" .Resources | partial "function/resource.html" -}}
                 ,"logo": {
@@ -141,10 +141,10 @@
                 {{- end -}}
             {{- end -}}
         },
-        {{- with .Params.author | default .Site.Author.name | default (T "author") -}}
+        {{- with .Site.Params.author | default .Site.Params.author.name | default (T "author") -}}
             "author": {
                 "@type": "Person",
-                "name": {{ . | safeHTML }}
+                "name": {{ . }}
             },
         {{- end -}}
         "description": {{ .Description | safeHTML }}
