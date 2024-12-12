@@ -22,6 +22,14 @@ twitter:
   Icon:
     Class: fab fa-twitter fa-fw
 
+# 003: Bluesky
+bluesky:
+  Weight: 3
+  Prefix: https://bsky.app/profile/
+  Title: Bluesky
+  Icon:
+    Class: fab fa-bluesky fa-fw
+
 # 004: Instagram
 instagram:
   Weight: 4
